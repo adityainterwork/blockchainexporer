@@ -1,0 +1,74 @@
+{
+	"name": "intermed",
+	"version": "1.0",
+	"license": "Apache-2.0",
+	"client": {
+		"tlsEnable": true,
+		"adminUser": "admin",
+		"adminPassword": "adminpw",
+		"enableAuthentication": false,
+		"organization": "Manufacturer",
+		"connection": {
+			"timeout": {
+				"peer": {
+					"endorser": "300"
+				},
+				"orderer": "300"
+			}
+		}
+	},
+	"channels": {
+		"intermedchannel": {
+			"orderers": ["orderer.intermed.com"],
+			"peers": {
+				"peer0.manufacturer.intermed.com": {
+					"ledgerQuery": true
+				},
+				"peer1.manufacturer.intermed.com": {
+					"ledgerQuery": true
+				}
+			}
+		}
+	},
+	"organizations": {
+		"Manufacturer": {
+			"mspid": "ManufacturerMSP",
+			"peers": [
+				"peer0.manufacturer.intermed.com",
+				"peer1.manufacturer.intermed.com"
+			],
+			"certificateAuthorities": ["ca-manufacturer"],
+			"adminPrivateKey": {
+				"path": "/home/aditya/SeeREAL/Intermed-NewNetwork/artifacts/channel/crypto-config/peerOrganizations/manufacturer.intermed.com/users/Admin@manufacturer.intermed.com/msp/keystore/49bf6465db8e72b09f50cf8242f7657d830536a5b284c2c63dea23c889a0df3d_sk"
+			},
+			"signedCert": {
+				"path": "/home/aditya/SeeREAL/Intermed-NewNetwork/artifacts/channel/crypto-config/peerOrganizations/manufacturer.intermed.com/users/Admin@manufacturer.intermed.com/msp/signcerts/Admin@manufacturer.intermed.com-cert.pem"
+			}
+		}
+	},
+
+	"peers": {
+		"peer0.manufacturer.intermed.com": {
+			"url": "grpcs://localhost:7051",
+			"grpcOptions": {
+				"ssl-target-name-override": "peer0.manufacturer.intermed.com"
+			},
+			"tlsCACerts": {
+				"path": "/home/aditya/SeeREAL/Intermed-NewNetwork/artifacts/channel/crypto-config/peerOrganizations/manufacturer.intermed.com/peers/peer0.manufacturer.intermed.com/tls/ca.crt"
+			}
+		}
+	},
+	"certificateAuthorities": {
+		"ca-manufacturer": {
+			"url": "https://localhost:7054",
+			"httpOptions": {
+				"verify": false
+			},
+			"tlsCACerts": {
+				"path": "/home/aditya/SeeREAL/Intermed-NewNetwork/artifacts/channel/crypto-config/peerOrganizations/manufacturer.intermed.com/ca/ca.manufacturer.intermed.com-cert.pem"
+			},
+
+			"caName": "ca-manufacturer"
+		}
+	}
+}

@@ -1,8 +1,8 @@
 {
 	"network-configs": {
-		"first-network": {
-			"name": "first-network",
-			"profile": "./connection-profile/first-network.json"
+		"intermed": {
+			"name": "intermed",
+			"profile": "./connection-profile/intermed-network.json"
 		}
 	},
 	"license": "Apache-2.0"
